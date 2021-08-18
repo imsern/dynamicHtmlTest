@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamisk HTML test</title>
+    <style>
+        .divTest {
+            text-align: center;  
+        }
+    </style>
+</head>
+<body>
+    
+    <label for="sizeOfImage">Size slider</label>
+    <input id="sizeSlider" name="sizeOfImage" type="range" min="100" max="500" step="10" oninput="showDiv()">
+    
+    
+    <label for="borderOfImage">Circle jerker</label>
+    <input id="borderSlider" name="borderOfImage" type="range" min="0" max="50" step="10" value="0" oninput="showDiv()"> 
+    
+    <label for="borderBredde">Border width</label>
+    <input id="borderWidth" name="borderBredde" type="range" min="0" max="50" step="1" value="5" oninput="showDiv()"> 
+
+
+    <br/><input id="textInput" type="text" oninput="showDiv()" value="endre tekst!">
+    
+    <label for="colorYesNo">color on/off</label>
+    <select name="colorYesNo" id="colorChooser" onchange="showDiv()">
+        <option selected value="none">None chosen</option>
+        <option value="red">Red color</option>
+        <option value="green">Green color</option>
+        <option value="blue">Blue color</option>
+        <option value="purple">Purple color</option>
+    </select>
+    
+    <label for="grayscaleYesNo">Grayscale on/off</label>
+    <select name="grayscaleYesNo" id="grayscaleChooser" onchange="showDiv()">
+        <option selected value="none">None chosen</option>
+        <option value="black">Black</option>
+        <option value="gray">Gray</option>
+        <option value="lightgray">Light Gray</option>
+    </select>
+    
+    <label for="borderYesNo">Border on/off</label>
+    <select name="borderYesNo" id="borderChooser" onchange="showDiv()">
+        <option selected value="none">No border</option>
+        <option value="10px solid black">Solid border</option>
+        <option value="10px dotted black">Dotted border</option>
+    </select>
+    
+    <div id="resultat" class="divTest"></div>
+    <div id="resultatHtml" style="font-family: monospace;"></div>
+
+    <script>
+        var resultatDiv = document.getElementById('resultat');
+        var resultatHtmlDiv = document.getElementById('resultatHtml');
+        var sizeSlider = document.getElementById('sizeSlider');
+        var borderSlider = document.getElementById('borderSlider');
+        var textInput = document.getElementById('textInput');
+        var colorChooser = document.getElementById('colorChooser');
+        var grayscaleChooser = document.getElementById('grayscaleChooser');
+        var borderChooser = document.getElementById('borderChooser');
+        var borderWidth = document.getElementById('borderWidth');
+
+        showDiv();
+
+    
+        function showDiv() {
+            var size = sizeSlider.value;
+            var text = textInput.value;
+            var color = colorChooser.value;
+            var grayscale = grayscaleChooser.value;
+            var borderSize = borderSlider.value;
+            var borderOnOff = borderChooser.value;
+            var borderW = borderWidth.value;
+
+            var backgroundColor = 'background-color: ' + color + ';';
+            var grayscaleBg = 'background-color: ' + grayscale + ';';
+            var width = 'width: ' + size + 'px;';
+            var height = 'height: ' + size + 'px;';
+            var border = 'border: ' + borderOnOff + ";";
+            var borderBredde = 'border-width: ' + borderW + 'px;';
+            var bradius = 'border-radius: ' + borderSize + '%;';
+            var style = 'style="' + backgroundColor + grayscaleBg + width + height + border + borderBredde + bradius + '"';
+            resultatDiv.innerHTML = '<div ' + style + '>' + text + '</div>';
+            resultatHtmlDiv.innerText = resultatDiv.innerHTML;
+        }
+
+
+
+    </script>
+
+</body>
+</html>
